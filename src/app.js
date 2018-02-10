@@ -6,7 +6,7 @@ var app = angular.module('starter', [
   'ionic',
   'positionService',
   'ionCordova'
-]).run(function ($ionicPlatform, positionService, $rootScope, $ionicPopup,$interval,$timeout,$state,$window,$cordovaToast)
+]).run(function ($ionicPlatform, positionService, $rootScope,$interval,$timeout,$window,$cordovaToast)
   {
 
     $ionicPlatform.registerBackButtonAction(function (e) {
