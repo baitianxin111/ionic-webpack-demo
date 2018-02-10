@@ -3,9 +3,9 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": ["android >= 5" ,"ios >= 8"]
+        "browsers": ["android >= 4.4.4" ,"ios >= 8"]
       },
-      "useBuiltIns": false,
+      "useBuiltIns": true,
       "debug": true
     }]
   ]

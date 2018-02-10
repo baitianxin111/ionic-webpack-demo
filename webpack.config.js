@@ -6,9 +6,11 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'evel-source-map',
-  entry: './src/index.js',
+  entry:{
+    main:'./src/index.js',
+  },
   output: {
-    filename: 'js/bundle.js',
+    filename: 'js/app.js',
     path: path.resolve(__dirname, 'www/'),
     publicPath:"./"
   },
@@ -17,9 +19,11 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+        ]
       },
       {
         test: /\.html$/,
@@ -53,12 +57,22 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      'window.jQuery': 'jquery'
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
     }),
     new ExtractTextPlugin({
-      filename: "../css/styles.css",
+      filename: "./css/styles.css",
       disable: false,
       allChunks: true
-    })
+    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./www/manifest.json')
+    }),
   ]
 };

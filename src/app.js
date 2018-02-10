@@ -1,9 +1,4 @@
-import './lib/angular/angular.min';
-import './lib/angular-animate/angular-animate.min';
-import './lib/angular-sanitize/angular-sanitize.min';
-import './lib/angular-ui-router/release/angular-ui-router.min'
-import './lib/ionic/js/ionic.min'
-import './lib/ionic/js/ionic-angular.min';
+import './lib/ionic'
 
 var app = angular.module('starter', ['ionic'])
 
