@@ -7,11 +7,13 @@
     "angular-animate": "^1.6.9",
     "angular-sanitize": "^1.6.9",
     "angular-ui-router": "^0.4.3",
+    "animate.css": "^3.5.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.9",
+    "echarts": "^4.0.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "gulp": "^3.5.6",
@@ -22,6 +24,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jquery": "^3.3.1",
     "ng-annotate-loader": "^0.6.1",
+    "ng-cordova": "^0.1.27-alpha",
     "ngtemplate-loader": "^2.0.1",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
@@ -29,5 +32,12 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "webpack:dll": "webpack --config webpack.dll.config.js -w",
+    "webpack:watch": "webpack -w",
+    "webpack": "webpack",
+    "serve": "ionic serve",
+    "start": "npm run webpack:dll & npm run serve & npm run webpack:watch"
+  }
 }

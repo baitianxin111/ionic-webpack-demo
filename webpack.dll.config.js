@@ -11,6 +11,7 @@ module.exports = {
   entry: {
     "lib": [
       'jquery',
+      'echarts',
       'angular',
       'angular-ui-router',
       'angular-animate',
