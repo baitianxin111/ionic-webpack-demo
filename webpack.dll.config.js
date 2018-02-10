@@ -15,7 +15,7 @@ module.exports = {
       'angular-ui-router',
       'angular-animate',
       'angular-sanitize',
-      './src/lib/ionic',
+      './src/ionic',
     ],
   },
   plugins: [

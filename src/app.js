@@ -1,4 +1,4 @@
-import './lib/ionic'
+import './ionic'
 
 var app = angular.module('starter', ['ionic'])
 
