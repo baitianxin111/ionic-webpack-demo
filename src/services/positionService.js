@@ -101,3 +101,4 @@ angular.module("positionService",[])
         }
     })
 
+export var positionService = "positionService"

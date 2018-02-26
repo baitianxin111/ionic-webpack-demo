@@ -1,7 +1,7 @@
-var angular = require('angular');
-require('angular-ui-router');
-require('angular-sanitize');
-require('angular-animate');
-require('./js/ionic.min');
-require('./js/ionic-angular.min');
-module.exports = 'ionic-angular';
+import 'angular'
+import 'angular-ui-router';
+import 'angular-sanitize';
+import 'angular-animate';
+import './js/ionic.min';
+import './js/ionic-angular.min';
+export var ionic = 'ionic';

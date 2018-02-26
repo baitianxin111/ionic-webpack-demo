@@ -1,16 +1,15 @@
-import './ionic'
-import './services/positionService';
-import './services/myCordova'
+import { ionic } from './ionic';
+import { positionService } from './services/positionService';
+import { ngCordova } from './directives/myCordova';
 
-var app = angular.module('starter', [
-  'ionic',
-  'positionService',
-  'ionCordova'
-]).run(function ($ionicPlatform, positionService, $rootScope,$interval,$timeout,$window,$cordovaToast)
+let app = angular.module('starter', [
+  ionic,
+  positionService,
+  ngCordova,
+]).run(($ionicPlatform, positionService, $rootScope,$interval,$timeout,$window,$cordovaToast)=>
   {
-
-    $ionicPlatform.registerBackButtonAction(function (e) {
-
+    $ionicPlatform.registerBackButtonAction(()=>
+    {
       if($rootScope.exitPopup.time===0)
       {
         $cordovaToast
@@ -21,7 +20,7 @@ var app = angular.module('starter', [
             addPixelsY:-150
           });
         $rootScope.exitPopup.time=1;
-        $timeout(function(){
+        $timeout(()=>{
           $rootScope.exitPopup.time=0;
         },500)
       }
@@ -42,6 +41,7 @@ var app = angular.module('starter', [
         $window.StatusBar.styleDefault();
       }
     });
+
   })
 
 export {app};

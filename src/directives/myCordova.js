@@ -1,6 +1,8 @@
 import angular from "angular";
 import "./ionic-cordova/src/plugins/toast";
-
-angular.module('ionCordova',[
+const name = 'ionCordova';
+angular.module(name,[
   'ionCordova.plugins.toast',
 ])
+
+export var ngCordova = name;

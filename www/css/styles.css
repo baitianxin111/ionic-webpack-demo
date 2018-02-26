@@ -12,8 +12,8 @@
 */
 @font-face {
   font-family: "Ionicons";
-  src: url(./css/fonts/ionicons.2c2ae06.eot);
-  src: url(./css/fonts/ionicons.2c2ae06.eot#iefix) format("embedded-opentype"), url(./css/fonts/ionicons.24712f6.ttf) format("truetype"), url(./css/fonts/ionicons.05acfdb.woff) format("woff"), url(./css/fonts/ionicons.05acfdb.woff) format("woff"), url(./css/fonts/ionicons.621bd38.svg#Ionicons) format("svg");
+  src: url(/css/fonts/ionicons.2c2ae06.eot);
+  src: url(/css/fonts/ionicons.2c2ae06.eot#iefix) format("embedded-opentype"), url(/css/fonts/ionicons.24712f6.ttf) format("truetype"), url(/css/fonts/ionicons.05acfdb.woff) format("woff"), url(/css/fonts/ionicons.05acfdb.woff) format("woff"), url(/css/fonts/ionicons.621bd38.svg#Ionicons) format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -9718,10 +9718,14 @@ input[readonly]::-webkit-input-placeholder {
   animation-name: rollOut; }
 
 /************************自定义部分style.css**********************************/
+* {
+  background-color: #fff; }
+
 html, body {
   height: 100%;
   width: 100%;
-  color: #222; }
+  color: #222;
+  padding: 0; }
 
 p {
   margin: 0;
@@ -9779,6 +9783,9 @@ div.flex-box {
   height: 100%;
   width: 100%;
   display: flex; }
+
+div {
+  background-color: #2f2f2f; }
 .test {
   color: #fff;
   background-color: #000; }

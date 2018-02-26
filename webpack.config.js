@@ -34,14 +34,6 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
-          },
-        ],
-      },
-      {
-        test: /\.view.html$/,
-        use: [
-          {
             loader:'ngtemplate-loader?relativeTo=' + (path.resolve(__dirname, './src'))+"&prefix=."
           },
           {
@@ -63,6 +55,18 @@ module.exports = {
           limit: 500,
           name:"css/fonts/[name].[hash:7].[ext]"
         }
+      },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
       }
     ]
   },
