@@ -60,26 +60,25 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return app; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ionic__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_positionService__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_positionService__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_positionService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__services_positionService__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_myCordova__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_myCordova__ = __webpack_require__(13);
 
 
 
 
-var app = angular.module('starter', ['ionic', 'positionService', 'ionCordova']).run(function ($ionicPlatform, positionService, $rootScope, $ionicPopup, $interval, $timeout, $state, $window, $cordovaToast) {
+var app = angular.module('starter', ['ionic', 'positionService', 'ionCordova']).run(function ($ionicPlatform, positionService, $rootScope, $interval, $timeout, $window, $cordovaToast) {
 
   $ionicPlatform.registerBackButtonAction(function (e) {
 
@@ -113,145 +112,37 @@ var app = angular.module('starter', ['ionic', 'positionService', 'ionCordova']).
 
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = lib;
 
 /***/ }),
-
-/***/ 10:
-/***/ (function(module, exports) {
-
-angular.module("positionService", []).service("positionService", function () {
-    return {
-        _currentPosition: { status: false },
-        _lastPosition: {},
-        _positionError: { status: false, message: "GPS 信号搜索中" },
-        _lowPosition: { status: false },
-        getHighPosition: function getHighPosition() {
-            if (this._currentPosition.status) {
-                return this._currentPosition;
-            } else {
-                if (this._lastPosition.hasOwnProperty("timestamp")) {
-                    var _last = new Date(this._lastPosition.timestamp).valueOf();
-                    var _now = new Date().valueOf();
-                    if (_now - _last < 6000) {
-                        return this._lastPosition;
-                    } else {
-                        return this._positionError;
-                    }
-                } else {
-                    return this._positionError;
-                }
-            }
-        },
-        getLowPosition: function getLowPosition() {
-            if (this._lowPosition.status) {
-                return this._lowPosition;
-            } else {
-                return this._positionError;
-            }
-        },
-        getPosition: function getPosition() {
-            if (this._currentPosition.status) {
-                return this._currentPosition;
-            } else {
-                if (this._lastPosition.hasOwnProperty("timestamp")) {
-                    var _last = new Date(this._lastPosition.timestamp).valueOf();
-                    var _now = new Date().valueOf();
-                    if (_now - _last < 6000) {
-                        return this._lastPosition();
-                    } else {
-                        return this.getLowPosition();
-                    }
-                } else {
-                    return this.getLowPosition();
-                }
-            }
-        },
-        setLowPosition: function setLowPosition(position) {
-            this._lowPosition.coords = {
-                accuracy: position.coords.accuracy,
-                altitude: position.coords.altitude,
-                altitudeAccuracy: position.coords.altitudeAccuracy,
-                heading: position.coords.heading,
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                speed: position.coords.speed
-            };
-            this._lowPosition.timestamp = position.timestamp;
-            this._lowPosition.status = true;
-            this._lowPosition.type = "lowPosition";
-        },
-        setPosition: function setPosition(position) {
-            if (this._currentPosition.status) {
-                this._lastPosition = angular.copy(this._currentPosition);
-                this._lastPosition.type = "lastPosition";
-            }
-            this._currentPosition.coords = {
-                accuracy: position.coords.accuracy,
-                altitude: position.coords.altitude,
-                altitudeAccuracy: position.coords.altitudeAccuracy,
-                heading: position.coords.heading,
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                speed: position.coords.speed
-            };
-            this._currentPosition.timestamp = position.timestamp;
-            this._currentPosition.status = true;
-            this._currentPosition.type = "currentPosition";
-        },
-        setError: function setError(error) {
-            this._currentPosition.status = false;
-            this._positionError = error;
-            this._positionError.status = false;
-        },
-        setLowError: function setLowError(error) {
-            this._lowPosition.status = false;
-            this._positionError = error;
-            this._positionError.status = false;
-        }
-    };
-});
-
-/***/ }),
-
-/***/ 100:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__);
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('ionCordova', ['ionCordova.plugins.toast']);
-
-/***/ }),
-
-/***/ 12:
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(181);
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 2:
+module.exports = __webpack_require__(4);
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animate_css__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animate_css__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animate_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animate_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ionic_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_test_test_component__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_test_test_component__ = __webpack_require__(16);
 
 
 
@@ -259,12 +150,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-
-/***/ 3:
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(4);
+var content = __webpack_require__(6);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -278,7 +168,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(8)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -310,11 +200,10 @@ if(false) {
 }
 
 /***/ }),
-
-/***/ 4:
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(7)(false);
 // imports
 
 
@@ -325,8 +214,7 @@ exports.push([module.i, "@charset \"UTF-8\";\n\n/*!\n * animate.css -http://dane
 
 
 /***/ }),
-
-/***/ 5:
+/* 7 */
 /***/ (function(module, exports) {
 
 /*
@@ -408,8 +296,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-
-/***/ 6:
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -475,7 +362,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(7);
+var	fixUrls = __webpack_require__(9);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -791,8 +678,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-
-/***/ 7:
+/* 9 */
 /***/ (function(module, exports) {
 
 
@@ -887,15 +773,129 @@ module.exports = function (css) {
 
 
 /***/ }),
-
-/***/ 8:
+/* 10 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 87:
+module.exports = (__webpack_require__(1))(490);
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+angular.module("positionService", []).service("positionService", function () {
+    return {
+        _currentPosition: { status: false },
+        _lastPosition: {},
+        _positionError: { status: false, message: "GPS 信号搜索中" },
+        _lowPosition: { status: false },
+        getHighPosition: function getHighPosition() {
+            if (this._currentPosition.status) {
+                return this._currentPosition;
+            } else {
+                if (this._lastPosition.hasOwnProperty("timestamp")) {
+                    var _last = new Date(this._lastPosition.timestamp).valueOf();
+                    var _now = new Date().valueOf();
+                    if (_now - _last < 6000) {
+                        return this._lastPosition;
+                    } else {
+                        return this._positionError;
+                    }
+                } else {
+                    return this._positionError;
+                }
+            }
+        },
+        getLowPosition: function getLowPosition() {
+            if (this._lowPosition.status) {
+                return this._lowPosition;
+            } else {
+                return this._positionError;
+            }
+        },
+        getPosition: function getPosition() {
+            if (this._currentPosition.status) {
+                return this._currentPosition;
+            } else {
+                if (this._lastPosition.hasOwnProperty("timestamp")) {
+                    var _last = new Date(this._lastPosition.timestamp).valueOf();
+                    var _now = new Date().valueOf();
+                    if (_now - _last < 6000) {
+                        return this._lastPosition();
+                    } else {
+                        return this.getLowPosition();
+                    }
+                } else {
+                    return this.getLowPosition();
+                }
+            }
+        },
+        setLowPosition: function setLowPosition(position) {
+            this._lowPosition.coords = {
+                accuracy: position.coords.accuracy,
+                altitude: position.coords.altitude,
+                altitudeAccuracy: position.coords.altitudeAccuracy,
+                heading: position.coords.heading,
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                speed: position.coords.speed
+            };
+            this._lowPosition.timestamp = position.timestamp;
+            this._lowPosition.status = true;
+            this._lowPosition.type = "lowPosition";
+        },
+        setPosition: function setPosition(position) {
+            if (this._currentPosition.status) {
+                this._lastPosition = angular.copy(this._currentPosition);
+                this._lastPosition.type = "lastPosition";
+            }
+            this._currentPosition.coords = {
+                accuracy: position.coords.accuracy,
+                altitude: position.coords.altitude,
+                altitudeAccuracy: position.coords.altitudeAccuracy,
+                heading: position.coords.heading,
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                speed: position.coords.speed
+            };
+            this._currentPosition.timestamp = position.timestamp;
+            this._currentPosition.status = true;
+            this._currentPosition.type = "currentPosition";
+        },
+        setError: function setError(error) {
+            this._currentPosition.status = false;
+            this._positionError = error;
+            this._positionError.status = false;
+        },
+        setLowError: function setLowError(error) {
+            this._lowPosition.status = false;
+            this._positionError = error;
+            this._positionError.status = false;
+        }
+    };
+});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__);
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('ionCordova', ['ionCordova.plugins.toast']);
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports) {
 
 // install   :      cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
@@ -998,24 +998,16 @@ angular.module('ionCordova.plugins.toast', []).factory('$cordovaToast', ['$q', '
 }]);
 
 /***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(1))(490);
-
-/***/ }),
-
-/***/ 93:
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(0);
 
 
-__WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+__WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $locationProvider) {
   $ionicConfigProvider.templates.maxPrefetch(0);
-
+  $locationProvider.hashPrefix("");
   $stateProvider.state('test', {
     url: '/test',
     templateUrl: "./component/test/test.html"
@@ -1025,48 +1017,48 @@ __WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(function ($stateProvide
 });
 
 /***/ }),
-
-/***/ 94:
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__testController__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_html__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__test_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_scss__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__test_html__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__test_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__test_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__testController__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_scss__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__test_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular__);
 
 
 
+
+angular.module("ng").run(function ($templateCache) {
+  $templateCache.put('./component/test/test.html', __WEBPACK_IMPORTED_MODULE_0__test_html___default.a);
+});
 
 /***/ }),
+/* 17 */
+/***/ (function(module, exports) {
 
-/***/ 95:
+module.exports = "<ion-view ng-controller=\"testCtrl\">\n  <div class=\"test\"></div>\n\n  测试12311111\n</ion-view>\n";
+
+/***/ }),
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(0);
 
-__WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].controller("testCtrl", function ($scope) {});
+__WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].controller("testCtrl", function ($scope) {
+  console.log(Math);
+});
 
 /***/ }),
-
-/***/ 96:
-/***/ (function(module, exports) {
-
-var path = './component/test/test.html';
-var html = "<ion-view ng-controller=\"testCtrl\">\n  <div class=\"test\"></div>\n\n  测试\n</ion-view>\n";
-window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
-module.exports = path;
-
-/***/ }),
-
-/***/ 97:
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
-
-/******/ });
+/******/ ]);
 //# sourceMappingURL=app.js.map

@@ -1,18 +1,19 @@
-require("babel-register");
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'evel-source-map',
   entry:{
-    main:'./src/index.js',
+    app:[
+      './src/index.js',
+    ]
   },
   output: {
     filename: 'js/app.js',
     path: path.resolve(__dirname, 'www/'),
-    publicPath:"./"
+    publicPath:"/"
   },
   module: {
     rules: [
@@ -33,11 +34,19 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
+            loader: 'html-loader'
+          },
+        ],
+      },
+      {
+        test: /\.view.html$/,
+        use: [
+          {
             loader:'ngtemplate-loader?relativeTo=' + (path.resolve(__dirname, './src'))+"&prefix=."
           },
           {
             loader: 'html-loader'
-          },
+          }
         ],
       },
       {
@@ -69,14 +78,24 @@ module.exports = {
       disable: false,
       allChunks: true
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./www/manifest.json')
+      manifest: require('./www/dll/manifest.json')
     }),
-  ]
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    historyApiFallback: true,
+    inline: true,
+    contentBase: path.join(__dirname, "www"),
+    hot: true,
+    index: 'index.html',
+    setup(app){
+      app.get('/cordova.js', function(req, res) {
+        res.setHeader('Content-Type', 'application/javascript');
+        res.write('');
+        res.end('');
+      });
+    }
+  },
 };

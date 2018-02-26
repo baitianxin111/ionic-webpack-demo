@@ -30,14 +30,17 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.0.0"
   },
   "dependencies": {},
   "scripts": {
-    "webpack:dll": "webpack --config webpack.dll.config.js -w",
-    "webpack:watch": "webpack -w",
+    "dll": "webpack --config webpack.dll.config.js",
+    "watch": "webpack -w",
     "webpack": "webpack",
     "serve": "ionic serve",
-    "start": "npm run webpack:dll & npm run serve & npm run webpack:watch"
+    "start": "npm run dll & npm run serve & npm run watch",
+    "server": "npm run watch & webpack-dev-server --open"
   }
 }

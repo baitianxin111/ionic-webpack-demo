@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   output: {
     // 将会生成./ddl/lib.js文件
-    path: path.resolve(__dirname, 'www/ddl'),
+    path: path.resolve(__dirname, 'www/dll'),
     filename: '[name].js',
     library: '[name]',
   },
@@ -22,9 +22,14 @@ module.exports = {
   plugins: [
     new webpack.DllPlugin({
       // 生成的映射关系文件
-      path: 'www/manifest.json',
+      path: 'www/dll/manifest.json',
       name: '[name]',
       context: __dirname,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
     }),
   ],
 };
