@@ -479,8 +479,6 @@ input[readonly]::-webkit-input-placeholder{
 html, body {
   height: 100%;
   width: 100%;
-  color: #222;
-  padding: 0;
 }
 
 p {
@@ -549,9 +547,4 @@ div.flex-box{
   height: 100%;
   width: 100%;
   display: flex;
-}
-
-
-div{
-  background-color: #2f2f2f;
 }
