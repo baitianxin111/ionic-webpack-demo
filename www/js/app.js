@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "980208fa63f6585739a7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1d3540b26c1f8e1f097b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1053,7 +1053,7 @@ angular.module('ionCordova.plugins.toast', []).factory('$cordovaToast', ['$q', '
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_temp__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_test__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_test__ = __webpack_require__(17);
 
 
 
@@ -1076,8 +1076,8 @@ __WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(['$stateProvider', '$ur
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tempController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tempController__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__temp_scss__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__temp_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__temp_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__temp_view_html__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__temp_view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__temp_view_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__temp_html__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__temp_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__temp_html__);
 
 
 
@@ -1086,7 +1086,7 @@ var view = {
   name: "temp",
   config: {
     url: "/temp",
-    template: __WEBPACK_IMPORTED_MODULE_2__temp_view_html___default.a
+    template: __WEBPACK_IMPORTED_MODULE_2__temp_html___default.a
   }
 };
 
@@ -1106,20 +1106,26 @@ var view = {
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<ion-view>\n  temp\n</ion-view>\n";
+module.exports = "<ion-view>\n  temp<img src=\"" + __webpack_require__(16) + "\">\n</ion-view>\n";
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/ionic.251ebf0.png";
+
+/***/ }),
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return view; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__testController__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_scss__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__testController__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_scss__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__test_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_html__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_html__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__test_html__);
 
 
@@ -1134,7 +1140,7 @@ var view = {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1145,13 +1151,13 @@ __WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].controller("testCtrl", ["$scop
 }]);
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = "<ion-view ng-controller=\"testCtrl\">\n  <div class=\"test\"></div>\n\n  测试1asdsad\n</ion-view>\n";
