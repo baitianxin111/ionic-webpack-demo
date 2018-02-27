@@ -1,4 +1,4 @@
-import { ionic } from './ionic';
+import { ionic } from 'ionic-webpack';
 import { positionService } from './services/positionService';
 import { ngCordova } from './directives/myCordova';
 
