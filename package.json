@@ -10,6 +10,7 @@
     "animate.css": "^3.5.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-angularjs-annotate": "^0.8.2",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.9",
@@ -41,6 +42,7 @@
     "webpack": "webpack",
     "serve": "ionic serve",
     "start": "npm run dll & npm run serve & npm run watch",
-    "server": "webpack-dev-server --open"
+    "server": "webpack-dev-server --open",
+    "prod": "webpack --config webpack.prod.config.js"
   }
 }

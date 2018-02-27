@@ -13,7 +13,6 @@ const ExtractScss = new ExtractTextPlugin({
 });
 
 module.exports = {
-  devtool: 'evel-source-map',
   entry:{
     app:[
       './src/index.js',
@@ -30,7 +29,14 @@ module.exports = {
         test: /\.css$/,
         use: ExtractCss.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use: [
+            {
+              loader: 'css-loader',
+              options:{
+                minimize: true //css压缩
+              }
+            }
+          ]
         })
       },
       {
@@ -50,7 +56,17 @@ module.exports = {
         test: /\.scss$/,
         use: ExtractScss.extract({
           fallback:"style-loader",
-          use: ['css-loader','sass-loader'],
+          use: [
+            {
+              loader: 'css-loader',
+              options:{
+                minimize: true //css压缩
+              }
+            },
+            {
+              loader: 'sass-loader',
+            }
+          ],
         })
       },
       {
@@ -98,20 +114,11 @@ module.exports = {
       'angular':'angular',
       'window.angular':'angular'
     }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    historyApiFallback: true,
-    inline: true,
-    contentBase: path.join(__dirname, "www"),
-    hot: true,
-    index: 'index.html',
-    setup(app){
-      app.get('/cordova.js', function(req, res) {
-        res.setHeader('Content-Type', 'application/javascript');
-        res.write('');
-        res.end('');
-      });
-    }
-  },
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      minimize: true
+    })
+  ]
 };

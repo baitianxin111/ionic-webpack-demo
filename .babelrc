@@ -1,12 +1,20 @@
 {
+  "plugins": [
+    "angularjs-annotate"
+  ],
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": ["android >= 4.4.4" ,"ios >= 8"]
-      },
-      "useBuiltIns": true,
-      "debug": true
-    }]
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "android >= 4.4.4",
+            "ios >= 8"
+          ]
+        },
+        "useBuiltIns": true
+      }
+    ]
   ]
 }
