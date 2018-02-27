@@ -1,6 +1,6 @@
 import { app } from './app';
-import { view as temp } from './component/temp';
-import { view as test } from './component/test';
+import { view as temp } from './partials/temp';
+import { view as test } from './partials/test';
 
 app.config(($stateProvider, $urlRouterProvider,$ionicConfigProvider,$locationProvider)=>{
   $ionicConfigProvider.templates.maxPrefetch(0);
