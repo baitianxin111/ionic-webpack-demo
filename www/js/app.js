@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1d3540b26c1f8e1f097b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2602d0e2ee3e942c6223"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -737,14 +737,14 @@ module.exports = (__webpack_require__(2))(181);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(angular) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return app; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_webpack__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_positionService__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_myCordova__ = __webpack_require__(9);
 
 
 
 
-var app = angular.module('starter', [__WEBPACK_IMPORTED_MODULE_0__ionic__["ionic"], __WEBPACK_IMPORTED_MODULE_1__services_positionService__["a" /* positionService */], __WEBPACK_IMPORTED_MODULE_2__directives_myCordova__["a" /* ngCordova */]]).run(['$ionicPlatform', 'positionService', '$rootScope', '$interval', '$timeout', '$window', '$cordovaToast', function ($ionicPlatform, positionService, $rootScope, $interval, $timeout, $window, $cordovaToast) {
+var app = angular.module('starter', [__WEBPACK_IMPORTED_MODULE_0_ionic_webpack__["ionic"], __WEBPACK_IMPORTED_MODULE_1__services_positionService__["a" /* positionService */], __WEBPACK_IMPORTED_MODULE_2__directives_myCordova__["a" /* ngCordova */]]).run(['$ionicPlatform', 'positionService', '$rootScope', '$interval', '$timeout', '$window', '$cordovaToast', function ($ionicPlatform, positionService, $rootScope, $interval, $timeout, $window, $cordovaToast) {
   $ionicPlatform.registerBackButtonAction(function () {
     if ($rootScope.exitPopup.time === 0) {
       $cordovaToast.showWithOptions({
@@ -800,7 +800,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ionic_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(11);
+throw new Error("Cannot find module \"config\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(11);
+
 
 
 
