@@ -1,11 +1,7 @@
 {
-  "name": "ioinc-webpack",
-  "short_name": "ioinc-webpack",
+  "name": "ioinc-webpack-demo",
+  "short_name": "ioinc-webpack-demo",
   "start_url": "index.html",
   "display": "standalone",
-  "icons": [{
-    "src": "icon.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }]
+  "lang": "zh-cn"
 }

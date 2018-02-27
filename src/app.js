@@ -1,6 +1,6 @@
 import { ionic } from 'ionic-webpack';
 import { positionService } from './services/positionService';
-import { ngCordova } from './directives/myCordova';
+import { ngCordova } from './services/myCordova';
 
 let app = angular.module('starter', [
   ionic,
