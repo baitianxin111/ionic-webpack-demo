@@ -20,9 +20,10 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'js/app.js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, 'www/'),
-    publicPath:"/"
+    publicPath:"/",
+    chunkFilename:'js/[name].js'
   },
   module: {
     rules: [

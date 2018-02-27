@@ -1,11 +1,12 @@
 import { ionic } from 'ionic-webpack';
+import oclazyload from 'oclazyload'
 import { positionService } from './services/positionService';
 import { ngCordova } from './services/myCordova';
-
 let app = angular.module('starter', [
   ionic,
   positionService,
   ngCordova,
+  oclazyload
 ]).run(($ionicPlatform, positionService, $rootScope,$interval,$timeout,$window,$cordovaToast)=>
   {
     $ionicPlatform.registerBackButtonAction(()=>

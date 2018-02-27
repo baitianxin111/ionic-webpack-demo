@@ -16,6 +16,7 @@ module.exports = {
       'angular-ui-router',
       'angular-animate',
       'angular-sanitize',
+      'oclazyload',
       'ionic-webpack',
     ],
   },

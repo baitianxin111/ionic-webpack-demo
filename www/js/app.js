@@ -1,4 +1,28 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	var parentJsonpFunction = window["webpackJsonp"];
+/******/ 	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 	};
 /******/ 	function hotDisposeChunk(chunkId) {
 /******/ 		delete installedChunks[chunkId];
 /******/ 	}
@@ -61,7 +85,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2602d0e2ee3e942c6223"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d850fb21ab10c38fa7ba"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -241,7 +265,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = 0;
+/******/ 			for(var chunkId in installedChunks)
 /******/ 			{ // eslint-disable-line no-lone-blocks
 /******/ 				/*globals chunkId */
 /******/ 				hotEnsureUpdateChunk(chunkId);
@@ -658,6 +682,11 @@
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
+/******/ 	// objects to store loaded and loading chunks
+/******/ 	var installedChunks = {
+/******/ 		2: 0
+/******/ 	};
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
@@ -685,6 +714,55 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		var installedChunkData = installedChunks[chunkId];
+/******/ 		if(installedChunkData === 0) {
+/******/ 			return new Promise(function(resolve) { resolve(); });
+/******/ 		}
+/******/
+/******/ 		// a Promise means "currently loading".
+/******/ 		if(installedChunkData) {
+/******/ 			return installedChunkData[2];
+/******/ 		}
+/******/
+/******/ 		// setup Promise in chunk cache
+/******/ 		var promise = new Promise(function(resolve, reject) {
+/******/ 			installedChunkData = installedChunks[chunkId] = [resolve, reject];
+/******/ 		});
+/******/ 		installedChunkData[2] = promise;
+/******/
+/******/ 		// start chunk loading
+/******/ 		var head = document.getElementsByTagName('head')[0];
+/******/ 		var script = document.createElement('script');
+/******/ 		script.type = 'text/javascript';
+/******/ 		script.charset = 'utf-8';
+/******/ 		script.async = true;
+/******/ 		script.timeout = 120000;
+/******/
+/******/ 		if (__webpack_require__.nc) {
+/******/ 			script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 		}
+/******/ 		script.src = __webpack_require__.p + "js/" + ({"0":"temp","1":"test"}[chunkId]||chunkId) + ".js";
+/******/ 		var timeout = setTimeout(onScriptComplete, 120000);
+/******/ 		script.onerror = script.onload = onScriptComplete;
+/******/ 		function onScriptComplete() {
+/******/ 			// avoid mem leaks in IE.
+/******/ 			script.onerror = script.onload = null;
+/******/ 			clearTimeout(timeout);
+/******/ 			var chunk = installedChunks[chunkId];
+/******/ 			if(chunk !== 0) {
+/******/ 				if(chunk) {
+/******/ 					chunk[1](new Error('Loading chunk ' + chunkId + ' failed.'));
+/******/ 				}
+/******/ 				installedChunks[chunkId] = undefined;
+/******/ 			}
+/******/ 		};
+/******/ 		head.appendChild(script);
+/******/
+/******/ 		return promise;
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -718,33 +796,32 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(3)(__webpack_require__.s = 3);
+/******/ 	return hotCreateRequire(5)(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(2))(181);
-
-/***/ }),
-/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(angular) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return app; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_webpack__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_positionService__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_myCordova__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_webpack__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_oclazyload__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_oclazyload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_oclazyload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_positionService__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_myCordova__ = __webpack_require__(12);
 
 
 
 
-var app = angular.module('starter', [__WEBPACK_IMPORTED_MODULE_0_ionic_webpack__["ionic"], __WEBPACK_IMPORTED_MODULE_1__services_positionService__["a" /* positionService */], __WEBPACK_IMPORTED_MODULE_2__directives_myCordova__["a" /* ngCordova */]]).run(['$ionicPlatform', 'positionService', '$rootScope', '$interval', '$timeout', '$window', '$cordovaToast', function ($ionicPlatform, positionService, $rootScope, $interval, $timeout, $window, $cordovaToast) {
+var app = angular.module('starter', [__WEBPACK_IMPORTED_MODULE_0_ionic_webpack__["ionic"], __WEBPACK_IMPORTED_MODULE_2__services_positionService__["a" /* positionService */], __WEBPACK_IMPORTED_MODULE_3__services_myCordova__["a" /* ngCordova */], __WEBPACK_IMPORTED_MODULE_1_oclazyload___default.a]).run(['$ionicPlatform', 'positionService', '$rootScope', '$interval', '$timeout', '$window', '$cordovaToast', function ($ionicPlatform, positionService, $rootScope, $interval, $timeout, $window, $cordovaToast) {
   $ionicPlatform.registerBackButtonAction(function () {
     if ($rootScope.exitPopup.time === 0) {
       $cordovaToast.showWithOptions({
@@ -774,60 +851,74 @@ var app = angular.module('starter', [__WEBPACK_IMPORTED_MODULE_0_ionic_webpack__
 }]);
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = lib;
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(4);
+module.exports = (__webpack_require__(1))(181);
+
+/***/ }),
+/* 3 */,
+/* 4 */,
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(6);
 
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animate_css__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animate_css__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animate_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animate_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ionic_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app__ = __webpack_require__(1);
-throw new Error("Cannot find module \"config\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(17);
 
 
 
 
 
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(2))(490);
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(1))(491);
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(1))(490);
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -925,17 +1016,17 @@ angular.module("positionService", []).service("positionService", function () {
 });
 
 var positionService = "positionService";
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ngCordova; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ionic_cordova_src_plugins_toast__);
 
 
@@ -945,7 +1036,7 @@ __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module(name, ['ionCordova.plugin
 var ngCordova = name;
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(angular) {// install   :      cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
@@ -1046,21 +1137,123 @@ angular.module('ionCordova.plugins.toast', []).factory('$cordovaToast', ['$q', '
     }
   };
 }]);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_temp__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_test__ = __webpack_require__(17);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts__);
+
+
+
+__WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(['$ionicConfigProvider', '$sceDelegateProvider', function ($ionicConfigProvider, $sceDelegateProvider) {
+  $ionicConfigProvider.views.transition('android');
+  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+  $ionicConfigProvider.views.maxCache(0);
+
+  $ionicConfigProvider.backButton.text('').icon('ion-ios-arrow-left');
+  $ionicConfigProvider.form.checkbox("circle"); //"circle"
+  $ionicConfigProvider.form.toggle("large");
+  $ionicConfigProvider.scrolling.jsScrolling(true);
+  $ionicConfigProvider.views.forwardCache(false);
+  $ionicConfigProvider.views.swipeBackEnabled(false);
+}]).constant('$ionicLoadingConfig', {
+  template: '<ion-spinner></ion-spinner>',
+  content: 'Loading',
+  animation: 'fade-in',
+  showBackdrop: true,
+  showDelay: 0,
+  duration: 10000
+}).directive('cgsEcharts', function () {
+  return {
+    restrict: 'A',
+    scope: {
+      options: '='
+    },
+    link: function link(scope, element, attrs) {
+      var chart;
+      var chartId = attrs.cgsEcharts ? attrs.cgsEcharts : 'autoid';
+      scope.$watch('options', function (n, o) {
+        if (scope.options) {
+          //init();
+          if (chart) {
+            chart.setOption(scope.options);
+          }
+        }
+      }, true);
+      scope.$on("chartChange", function (event) {
+        if (scope.options) {
+          //init();
+          if (chart) {
+            chart.setOption(scope.options);
+          }
+        }
+      });
+      function dispose() {
+        if (chart) {
+          chart.dispose();
+          $(window).unbind('resize.' + chartId);
+        }
+      }
+
+      function init() {
+        dispose();
+        // 安全检测，未显示却加载则不init
+
+        chart = __WEBPACK_IMPORTED_MODULE_1_echarts___default.a.init(element[0]);
+        // chart.showLoading({
+        //   text: '正在努力读取数据中……'
+        // });
+        // 为echarts对象加载数据
+        chart.setOption(scope.options);
+        // chart.hideLoading();
+        $(window).bind('resize.' + chartId, function () {
+          //						console.log(chartId);
+          chart.resize();
+          // chart.refresh();
+        });
+      }
+      init();
+
+      scope.$on('$destroy', function () {
+        dispose();
+      });
+    }
+  };
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(15)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(1))(186);
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(1))(187);
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_temp__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_test__ = __webpack_require__(20);
 
 
 
 
 __WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $locationProvider) {
+
   $ionicConfigProvider.templates.maxPrefetch(0);
   $locationProvider.hashPrefix("");
   $stateProvider.state(__WEBPACK_IMPORTED_MODULE_2__partials_test__["a" /* view */].name, __WEBPACK_IMPORTED_MODULE_2__partials_test__["a" /* view */].config).state(__WEBPACK_IMPORTED_MODULE_1__partials_temp__["a" /* view */].name, __WEBPACK_IMPORTED_MODULE_1__partials_temp__["a" /* view */].config);
@@ -1069,66 +1262,66 @@ __WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].config(['$stateProvider', '$ur
 }]);
 
 /***/ }),
-/* 12 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return view; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tempController__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tempController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tempController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__temp_scss__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__temp_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__temp_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__temp_html__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__temp_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__temp_html__);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__temp_scss__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__temp_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__temp_scss__);
 
 
 var view = {
   name: "temp",
   config: {
     url: "/temp",
-    template: __WEBPACK_IMPORTED_MODULE_2__temp_html___default.a
+    // template:temp,
+    controller: 'homeCtrl',
+    templateProvider: function templateProvider($q) {
+      var deferred = $q.defer();
+      __webpack_require__.e/* require.ensure */(0).then((function (require) {
+        var template = __webpack_require__(3);
+        deferred.resolve(template);
+      }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+      return deferred.promise;
+    },
+    resolve: {
+      'tempModule': function tempModule($q, $ocLazyLoad) {
+        var deferred = $q.defer();
+        __webpack_require__.e/* require.ensure */(0).then((function (require) {
+          __webpack_require__(4);
+          $ocLazyLoad.load({
+            name: "starter"
+          });
+          deferred.resolve();
+        }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+        return deferred.promise;
+      }
+    }
   }
 };
 
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 14 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = "<ion-view>\n  temp<img src=\"" + __webpack_require__(16) + "\">\n</ion-view>\n";
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/ionic.251ebf0.png";
-
-/***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return view; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__testController__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_scss__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__testController__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_scss__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__test_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_html__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_html__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__test_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tempDirective__ = __webpack_require__(24);
+
 
 
 
@@ -1142,27 +1335,48 @@ var view = {
 };
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(0);
 
 __WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].controller("testCtrl", ["$scope", function ($scope) {
   console.log(122);
 }]);
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-view ng-controller=\"testCtrl\">\n  <div class=\"test\"></div>\n\n  测试1asdsad\n</ion-view>\n";
+module.exports = "<ion-view ng-controller=\"testCtrl\">\n  <div class=\"test\"></div>\n\n  测试1asdsad\n\n  <temp-directive></temp-directive>\n</ion-view>\n";
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(0);
+
+
+__WEBPACK_IMPORTED_MODULE_0__app__["a" /* app */].directive('tempDirective', function () {
+  return {
+    template: '\n      <div>12345</div>\n    ',
+    link: function link($element, $scope, $attrs) {
+      __webpack_require__.e/* require.ensure */(1).then((function (require) {
+        var squel = __webpack_require__(25);
+        var sql = squel.select().from("table", "t1").field("t1.id").field("t2.name").left_join("table2", "t2", "t1.id = t2.id").group("t1.id").where("t2.name <> 'Mark'").where("t2.name <> 'John'").toString();
+        console.log(sql);
+      }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+    }
+  };
+});
 
 /***/ })
 /******/ ]);
