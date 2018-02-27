@@ -1,4 +1,4 @@
-# ionic-webpack
+# ionic-webpack-demo
 
 研究如何在ionic项目中运用webpack
 

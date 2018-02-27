@@ -14,8 +14,14 @@ npm-debug.log*
 src/lib/
 
 .idea/
-node_modules/
-
+.sourcemaps/
+.sass-cache/
+.tmp/
+.versions/
+/coverage/
+/dist/
+/node_modules/
+/tmp/
 /temp/
 /platforms/
 /plugins/
@@ -27,7 +33,7 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 /src/directives/angular-ol4/
-/www/css/
-/www/img/
-/www/js/
-/www/dll/
+/src/www/img/
+/src/www/js/
+/src/www/css/
+/src/www/dll/

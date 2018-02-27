@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   output: {
-    // 将会生成./ddl/lib.js文件
+    // 将会生成./dll/lib.js文件
     path: path.resolve(__dirname, 'www/dll'),
     filename: '[name].js',
     library: '[name]',
@@ -16,7 +16,7 @@ module.exports = {
       'angular-ui-router',
       'angular-animate',
       'angular-sanitize',
-      './src/ionic',
+      'ionic-webpack',
     ],
   },
   plugins: [
