@@ -1,6 +1,9 @@
 # ionic-webpack-demo
 
-研究如何在ionic项目中运用webpack
+基于webpack3.10.0
+babel6
+
+研究如何在ionic1.3.5项目中运用webpack
 
 目标 
 压缩js
